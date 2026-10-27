@@ -1,349 +1,441 @@
-<?xml version="1.0" encoding="utf-8"?>
 <StructureDefinition xmlns="http://hl7.org/fhir">
-  <id value="sfm-pllInformation" />
-  <url value="http://ehelse.no/fhir/StructureDefinition/sfm-pllInformation" />
-  <version value="1.0" />
-  <name value="SfmpllInformation" />
-  <title value="sfm-pllInformation" />
-  <status value="active" />
-  <date value="2021-05-01" />
-  <description value="Describes information provided in PLL/M25 messages." />
-  <fhirVersion value="4.0.0" />
-  <kind value="complex-type" />
-  <abstract value="false" />
-  <context>
-    <type value="element" />
-    <expression value="Basic" />
-  </context>
-  <type value="Extension" />
-  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
-  <derivation value="constraint" />
-  <differential>
-    <element id="Extension.extension">
-      <path value="Extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Extension.extension:relatedparties">
-      <path value="Extension.extension" />
-      <sliceName value="relatedparties" />
-      <short value="Providers with relations to patient" />
-      <definition value="Differnt kind of healthcare providers that have relations to the patient. .eresept: M25:Rolle" />
-    </element>
-    <element id="Extension.extension:relatedparties.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="relatedparties" />
-    </element>
-    <element id="Extension.extension:relatedparties.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-PractitionerRole" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation">
-      <path value="Extension.extension" />
-      <sliceName value="deliveryinformation" />
-      <short value="Delivery information from M25.3" />
-      <definition value="Information provided in M25.3." />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension">
-      <path value="Extension.extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:prescriptionId">
-      <path value="Extension.extension.extension" />
-      <sliceName value="prescriptionId" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:prescriptionId.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="prescriptionId" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:prescriptionId.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-MedicationStatement" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:refM10">
-      <path value="Extension.extension.extension" />
-      <sliceName value="refM10" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:refM10.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="refM10" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:refM10.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="string" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:repacking">
-      <path value="Extension.extension.extension" />
-      <sliceName value="repacking" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:repacking.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="repacking" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:repacking.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="CodeableConcept" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:repacking.value[x].coding.system">
-      <path value="Extension.extension.extension.value[x].coding.system" />
-      <min value="1" />
-      <fixedUri value="urn:oid:2.16.578.1.12.4.1.1.7492" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:repacking.value[x].coding.code">
-      <path value="Extension.extension.extension.value[x].coding.code" />
-      <min value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:repacking.value[x].coding.display">
-      <path value="Extension.extension.extension.value[x].coding.display" />
-      <min value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:datefirstdose">
-      <path value="Extension.extension.extension" />
-      <sliceName value="datefirstdose" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:datefirstdose.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="datefirstdose" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:datefirstdose.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="dateTime" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:datelastdose">
-      <path value="Extension.extension.extension" />
-      <sliceName value="datelastdose" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:datelastdose.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="datelastdose" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:datelastdose.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="dateTime" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:pictureref">
-      <path value="Extension.extension.extension" />
-      <sliceName value="pictureref" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:pictureref.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="pictureref" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:pictureref.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="url" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:deliverydoc">
-      <path value="Extension.extension.extension" />
-      <sliceName value="deliverydoc" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:deliverydoc.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="deliverydoc" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.extension:deliverydoc.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="Reference" />
-        <targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-MedicationDispense" />
-      </type>
-    </element>
-    <element id="Extension.extension:deliveryinformation.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="deliveryinformation" />
-    </element>
-    <element id="Extension.extension:deliveryinformation.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <max value="0" />
-    </element>
-    <element id="Extension.extension:text">
-      <path value="Extension.extension" />
-      <sliceName value="text" />
-      <short value="General coment in M25.x" />
-      <definition value=".eresept -&gt; M25: Merknad" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:text.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="text" />
-    </element>
-    <element id="Extension.extension:text.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <type>
-        <code value="string" />
-      </type>
-    </element>
-    <element id="Extension.extension:substitute">
-      <path value="Extension.extension" />
-      <sliceName value="substitute" />
-      <short value="Substitute for Multidose doctor" />
-      <definition value="Identifies if doctor is substitute for the multidose doctor. .eresept -&gt;M25.1:Vikar" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:substitute.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="substitute" />
-    </element>
-    <element id="Extension.extension:substitute.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <type>
-        <code value="boolean" />
-      </type>
-    </element>
-    <element id="Extension.extension:createPLL">
-      <path value="Extension.extension" />
-      <sliceName value="createPLL" />
-      <short value="Identifies to create PLL" />
-      <definition value="Identify if SFM should create PLL based on input provided." />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:createPLL.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="createPLL" />
-    </element>
-    <element id="Extension.extension:createPLL.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <type>
-        <code value="boolean" />
-      </type>
-    </element>
-    <element id="Extension.extension:packinginfo">
-      <path value="Extension.extension" />
-      <sliceName value="packinginfo" />
-      <short value="Packing info from M25.2/3" />
-      <definition value="Information about last packing and latest order date for next packing." />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension">
-      <path value="Extension.extension.extension" />
-      <slicing>
-        <discriminator>
-          <type value="value" />
-          <path value="url" />
-        </discriminator>
-        <rules value="open" />
-      </slicing>
-    </element>
-    <element id="Extension.extension:packinginfo.extension:orderdeadline">
-      <path value="Extension.extension.extension" />
-      <sliceName value="orderdeadline" />
-      <short value="Deadline for ordering new packing" />
-      <definition value=".eresept M25.2/3 -&gt; Bestillingsfrist" />
-      <min value="1" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension:orderdeadline.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="orderdeadline" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension:orderdeadline.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="dateTime" />
-      </type>
-    </element>
-    <element id="Extension.extension:packinginfo.extension:firstdosingdate">
-      <path value="Extension.extension.extension" />
-      <sliceName value="firstdosingdate" />
-      <short value="First date of dosing based on packing" />
-      <definition value=".eresept -&gt; M25.2/3:ForsteDoseringsDato" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension:firstdosingdate.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="firstdosingdate" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension:firstdosingdate.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="date" />
-      </type>
-    </element>
-    <element id="Extension.extension:packinginfo.extension:lastdosingdate">
-      <path value="Extension.extension.extension" />
-      <sliceName value="lastdosingdate" />
-      <short value="Last date of dosing based on packing" />
-      <definition value=".eresept -&gt; M25.2/3:SisteDoseringsDato" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension:lastdosingdate.url">
-      <path value="Extension.extension.extension.url" />
-      <fixedUri value="lastdosingdate" />
-    </element>
-    <element id="Extension.extension:packinginfo.extension:lastdosingdate.value[x]">
-      <path value="Extension.extension.extension.value[x]" />
-      <type>
-        <code value="date" />
-      </type>
-    </element>
-    <element id="Extension.extension:packinginfo.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="packinginfo" />
-    </element>
-    <element id="Extension.extension:packinginfo.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <max value="0" />
-    </element>
-    <element id="Extension.extension:PLLdate">
-      <path value="Extension.extension" />
-      <sliceName value="PLLdate" />
-      <max value="1" />
-    </element>
-    <element id="Extension.extension:PLLdate.url">
-      <path value="Extension.extension.url" />
-      <fixedUri value="PLLdate" />
-    </element>
-    <element id="Extension.extension:PLLdate.value[x]">
-      <path value="Extension.extension.value[x]" />
-      <type>
-        <code value="dateTime" />
-      </type>
-    </element>
-    <element id="Extension.url">
-      <path value="Extension.url" />
-      <fixedUri value="http://ehelse.no/fhir/StructureDefinition/sfm-pllInformation" />
-    </element>
-    <element id="Extension.value[x]">
-      <path value="Extension.value[x]" />
-      <max value="0" />
-    </element>
-  </differential>
+<id value="sfm-pllInformation" />
+<url value="http://ehelse.no/fhir/StructureDefinition/sfm-pllInformation" />
+<version value="2.0" />
+<name value="SfmpllInformation" />
+<title value="sfm-pllInformation" />
+<status value="active" />
+<date value="2026-10-27" />
+<description value="Describes information provided in PLL/M25 messages." />
+<fhirVersion value="4.0.0" />
+<kind value="complex-type" />
+<abstract value="false" />
+<context>
+<type value="element" />
+<expression value="Basic" />
+</context>
+<type value="Extension" />
+<baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension" />
+<derivation value="constraint" />
+<differential>
+<element id="Extension.extension">
+<path value="Extension.extension" />
+<slicing>
+<discriminator>
+<type value="value" />
+<path value="url" />
+</discriminator>
+<rules value="open" />
+</slicing>
+</element>
+<element id="Extension.extension:relatedparties">
+<path value="Extension.extension" />
+<sliceName value="relatedparties" />
+<short value="Providers with relations to patient" />
+<definition value="Differnt kind of healthcare providers that have relations to the patient. .eresept: M25:Rolle" />
+</element>
+<element id="Extension.extension:relatedparties.url">
+<path value="Extension.extension.url" />
+<fixedUri value="relatedparties" />
+</element>
+<element id="Extension.extension:relatedparties.value[x]">
+<path value="Extension.extension.value[x]" />
+<type>
+<code value="Reference" />
+<targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-PractitionerRole" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation">
+<path value="Extension.extension" />
+<sliceName value="deliveryinformation" />
+<short value="Delivery information from M25.3" />
+<definition value="Information provided in M25.3." />
+</element>
+<element id="Extension.extension:deliveryinformation.extension">
+<path value="Extension.extension.extension" />
+<slicing>
+<discriminator>
+<type value="value" />
+<path value="url" />
+</discriminator>
+<rules value="open" />
+</slicing>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:prescriptionId">
+<path value="Extension.extension.extension" />
+<sliceName value="prescriptionId" />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:prescriptionId.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="prescriptionId" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:prescriptionId.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="Reference" />
+<targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-MedicationStatement" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:refM10">
+<path value="Extension.extension.extension" />
+<sliceName value="refM10" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:refM10.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="refM10" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:refM10.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="string" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:repacking">
+<path value="Extension.extension.extension" />
+<sliceName value="repacking" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:repacking.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="repacking" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:repacking.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="CodeableConcept" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:repacking.value[x].coding.system">
+<path value="Extension.extension.extension.value[x].coding.system" />
+<min value="1" />
+<fixedUri value="urn:oid:2.16.578.1.12.4.1.1.7492" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:repacking.value[x].coding.code">
+<path value="Extension.extension.extension.value[x].coding.code" />
+<min value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:repacking.value[x].coding.display">
+<path value="Extension.extension.extension.value[x].coding.display" />
+<min value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:datefirstdose">
+<path value="Extension.extension.extension" />
+<sliceName value="datefirstdose" />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:datefirstdose.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="datefirstdose" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:datefirstdose.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="dateTime" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:datelastdose">
+<path value="Extension.extension.extension" />
+<sliceName value="datelastdose" />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:datelastdose.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="datelastdose" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:datelastdose.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="dateTime" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:pictureref">
+<path value="Extension.extension.extension" />
+<sliceName value="pictureref" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:pictureref.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="pictureref" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:pictureref.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="url" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.extension:deliverydoc">
+<path value="Extension.extension.extension" />
+<sliceName value="deliverydoc" />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:deliverydoc.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="deliverydoc" />
+</element>
+<element id="Extension.extension:deliveryinformation.extension:deliverydoc.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="Reference" />
+<targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-MedicationDispense" />
+</type>
+</element>
+<element id="Extension.extension:deliveryinformation.url">
+<path value="Extension.extension.url" />
+<fixedUri value="deliveryinformation" />
+</element>
+<element id="Extension.extension:deliveryinformation.value[x]">
+<path value="Extension.extension.value[x]" />
+<max value="0" />
+</element>
+<element id="Extension.extension:text">
+<path value="Extension.extension" />
+<sliceName value="text" />
+<short value="General coment in M25.x" />
+<definition value=".eresept -&gt; M25: Merknad" />
+<max value="1" />
+</element>
+<element id="Extension.extension:text.url">
+<path value="Extension.extension.url" />
+<fixedUri value="text" />
+</element>
+<element id="Extension.extension:text.value[x]">
+<path value="Extension.extension.value[x]" />
+<type>
+<code value="string" />
+</type>
+</element>
+<element id="Extension.extension:substitute">
+<path value="Extension.extension" />
+<sliceName value="substitute" />
+<short value="Substitute for Multidose doctor" />
+<definition value="Identifies if doctor is substitute for the multidose doctor. .eresept -&gt;M25.1:Vikar" />
+<max value="1" />
+</element>
+<element id="Extension.extension:substitute.url">
+<path value="Extension.extension.url" />
+<fixedUri value="substitute" />
+</element>
+<element id="Extension.extension:substitute.value[x]">
+<path value="Extension.extension.value[x]" />
+<type>
+<code value="boolean" />
+</type>
+</element>
+<element id="Extension.extension:createPLL">
+<path value="Extension.extension" />
+<sliceName value="createPLL" />
+<short value="Identifies to create PLL" />
+<definition value="Identify if SFM should create PLL based on input provided." />
+<max value="1" />
+</element>
+<element id="Extension.extension:createPLL.url">
+<path value="Extension.extension.url" />
+<fixedUri value="createPLL" />
+</element>
+<element id="Extension.extension:createPLL.value[x]">
+<path value="Extension.extension.value[x]" />
+<type>
+<code value="boolean" />
+</type>
+</element>
+<element id="Extension.extension:packinginfo">
+<path value="Extension.extension" />
+<sliceName value="packinginfo" />
+<short value="Packing info from M25.2/3" />
+<definition value="Information about last packing and latest order date for next packing." />
+<max value="1" />
+</element>
+<element id="Extension.extension:packinginfo.extension">
+<path value="Extension.extension.extension" />
+<slicing>
+<discriminator>
+<type value="value" />
+<path value="url" />
+</discriminator>
+<rules value="open" />
+</slicing>
+</element>
+<element id="Extension.extension:packinginfo.extension:orderdeadline">
+<path value="Extension.extension.extension" />
+<sliceName value="orderdeadline" />
+<short value="Deadline for ordering new packing" />
+<definition value=".eresept M25.2/3 -&gt; Bestillingsfrist" />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:packinginfo.extension:orderdeadline.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="orderdeadline" />
+</element>
+<element id="Extension.extension:packinginfo.extension:orderdeadline.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="dateTime" />
+</type>
+</element>
+<element id="Extension.extension:packinginfo.extension:firstdosingdate">
+<path value="Extension.extension.extension" />
+<sliceName value="firstdosingdate" />
+<short value="First date of dosing based on packing" />
+<definition value=".eresept -&gt; M25.2/3:ForsteDoseringsDato" />
+<max value="1" />
+</element>
+<element id="Extension.extension:packinginfo.extension:firstdosingdate.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="firstdosingdate" />
+</element>
+<element id="Extension.extension:packinginfo.extension:firstdosingdate.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="date" />
+</type>
+</element>
+<element id="Extension.extension:packinginfo.extension:lastdosingdate">
+<path value="Extension.extension.extension" />
+<sliceName value="lastdosingdate" />
+<short value="Last date of dosing based on packing" />
+<definition value=".eresept -&gt; M25.2/3:SisteDoseringsDato" />
+<max value="1" />
+</element>
+<element id="Extension.extension:packinginfo.extension:lastdosingdate.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="lastdosingdate" />
+</element>
+<element id="Extension.extension:packinginfo.extension:lastdosingdate.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="date" />
+</type>
+</element>
+<element id="Extension.extension:packinginfo.url">
+<path value="Extension.extension.url" />
+<fixedUri value="packinginfo" />
+</element>
+<element id="Extension.extension:packinginfo.value[x]">
+<path value="Extension.extension.value[x]" />
+<max value="0" />
+</element>
+<element id="Extension.extension:PLLdate">
+<path value="Extension.extension" />
+<sliceName value="PLLdate" />
+<max value="1" />
+</element>
+<element id="Extension.extension:PLLdate.url">
+<path value="Extension.extension.url" />
+<fixedUri value="PLLdate" />
+</element>
+<element id="Extension.extension:PLLdate.value[x]">
+<path value="Extension.extension.value[x]" />
+<type>
+<code value="dateTime" />
+</type>
+</element>
+<element id="Extension.extension:medicationreview">
+<path value="Extension.extension" />
+<sliceName value="medicationreview" />
+<short value="Last medication review performed" />
+<definition value="Information about the last medication review that was performed." />
+<max value="1" />
+</element>
+<element id="Extension.extension:medicationreview.extension">
+<path value="Extension.extension.extension" />
+<slicing>
+<discriminator>
+<type value="value" />
+<path value="url" />
+</discriminator>
+<rules value="open" />
+</slicing>
+<min value="2" />
+</element>
+<element id="Extension.extension:medicationreview.extension:timestamp">
+<path value="Extension.extension.extension" />
+<sliceName value="timestamp" />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:medicationreview.extension:timestamp.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="timestamp" />
+</element>
+<element id="Extension.extension:medicationreview.extension:timestamp.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="dateTime" />
+</type>
+</element>
+<element id="Extension.extension:medicationreview.extension:performedby">
+<path value="Extension.extension.extension" />
+<sliceName value="performedby" />
+<short value="HPR number" />
+<definition value="HPR number of caregiver that was responsible for medication review." />
+<min value="1" />
+<max value="1" />
+</element>
+<element id="Extension.extension:medicationreview.extension:performedby.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="performedby" />
+</element>
+<element id="Extension.extension:medicationreview.extension:performedby.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="Reference" />
+<targetProfile value="http://ehelse.no/fhir/StructureDefinition/sfm-PractitionerRole" />
+</type>
+</element>
+<element id="Extension.extension:medicationreview.extension:comment">
+<path value="Extension.extension.extension" />
+<sliceName value="comment" />
+<max value="1" />
+</element>
+<element id="Extension.extension:medicationreview.extension:comment.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="comment" />
+</element>
+<element id="Extension.extension:medicationreview.extension:comment.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="string" />
+</type>
+</element>
+<element id="Extension.extension:medicationreview.extension:next">
+<path value="Extension.extension.extension" />
+<sliceName value="next" />
+<short value="Date for next medication review" />
+<definition value="The date for next medication review will be set in SFM full and is represented in this field." />
+<max value="1" />
+</element>
+<element id="Extension.extension:medicationreview.extension:next.url">
+<path value="Extension.extension.extension.url" />
+<fixedUri value="next" />
+</element>
+<element id="Extension.extension:medicationreview.extension:next.value[x]">
+<path value="Extension.extension.extension.value[x]" />
+<type>
+<code value="date" />
+</type>
+</element>
+<element id="Extension.extension:medicationreview.url">
+<path value="Extension.extension.url" />
+<fixedUri value="medicationreview" />
+</element>
+<element id="Extension.extension:medicationreview.value[x]">
+<path value="Extension.extension.value[x]" />
+<max value="0" />
+</element>
+<element id="Extension.url">
+<path value="Extension.url" />
+<fixedUri value="http://ehelse.no/fhir/StructureDefinition/sfm-pllInformation" />
+</element>
+<element id="Extension.value[x]">
+<path value="Extension.value[x]" />
+<max value="0" />
+</element>
+</differential>
 </StructureDefinition>
